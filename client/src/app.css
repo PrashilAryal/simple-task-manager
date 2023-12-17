@@ -1,0 +1,60 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  background-color: rgb(56, 47, 110);
+  border-radius: 10px;
+  padding: 40px;
+}
+.app h1 {
+  color: gainsboro;
+  margin-top: 0;
+}
+/* .app__searchBox {
+  border-radius: 10px;
+} */
+.app__listContainer {
+  background-color: darkslateblue;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 10px;
+  /* border-radius: 10px; */
+}
+.app__listContainer .app__listContainer__heading {
+  color: gainsboro;
+  margin: 10px;
+}
+
+.textBox {
+  height: 100%;
+  width: 100%;
+}
+.textBox .textBox__input {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+}
+
+.button__container button {
+  /* margin-left: 10px; */
+  border: none;
+  border-radius: 5px;
+  padding: 8px 25px;
+  /* height: 25px; */
+  margin: auto 0;
+  /* margin-left: 10px; */
+  font-weight: 600;
+  background-color: darkorange;
+  color: white;
+  transition: transform 0.5s ease;
+}
+.button__container button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  background-color: rgba(255, 77, 1, 0.5);
+}

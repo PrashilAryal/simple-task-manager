@@ -1,0 +1,69 @@
+.listItem {
+  display: flex;
+  background-color: rgb(91, 78, 176);
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px auto;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding: 0 10px;
+  transition: transform 0.5s ease;
+}
+.listItem:hover {
+  transform: scale(1.03);
+}
+.listItem .listItem__details {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.listItem__details p {
+  color: darkorange;
+  font-size: 20px;
+  margin: 0;
+}
+.listItem__details span {
+  color: gainsboro;
+}
+.listItem input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid darkorange;
+  border-radius: 4px;
+  outline: none;
+  margin-left: 10px;
+  position: relative;
+}
+.listItem input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+.listItem input[type="checkbox"]:checked {
+  background-color: darkorange;
+  border-color: darkorange;
+}
+.listItem input[type="checkbox"]:checked:before {
+  content: "\2713";
+  color: white;
+  position: absolute;
+  font-size: 15px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.completedTask {
+  background-color: darkorange;
+  border-color: darkorange;
+}
+.completedTask:before {
+  content: "\2713";
+  color: white;
+  position: absolute;
+  font-size: 15px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

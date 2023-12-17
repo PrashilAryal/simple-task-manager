@@ -1,0 +1,38 @@
+.searchContainer {
+  background-color: darkslateblue;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 40px;
+  padding: 10px 0;
+  width: 80%;
+  margin: 0 auto;
+}
+.searchContainer p {
+  padding-right: 10px;
+  margin: auto 0;
+  color: gainsboro;
+}
+.searchContainer input {
+  border-radius: 5px;
+  width: 50%;
+  border: none;
+  outline: none;
+}
+/* .searchContainer button {
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  height: 25px;
+  margin: auto 0;
+  margin-left: 10px;
+  font-weight: 600;
+  background-color: darkorange;
+  color: white;
+  transition: transform 0.5s ease;
+}
+.searchContainer button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  background-color: rgba(255, 77, 1, 0.5);
+} */
