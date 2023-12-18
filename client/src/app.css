@@ -16,18 +16,24 @@
 /* .app__searchBox {
   border-radius: 10px;
 } */
-.app__showAddTaskButton {
-  /* margin-bottom: 10px; */
-  position: absolute;
-  top: 13%;
-  right: 15%;
+.app__searchAddButton {
+  /* position: absolute; */
+  /* top: 13%; */
+  /* right: 15%; */
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  /* background-color: darkslateblue; */
 }
 .addTask {
   color: gainsboro;
 }
 .app__searchBox {
-  margin-top: 30px;
-  margin-bottom: 10px;
+  /* margin-top: 30px; */
+  /* margin-bottom: 10px; */
 }
 .app__addTaskBox {
   /* margin-bottom: 10px; */

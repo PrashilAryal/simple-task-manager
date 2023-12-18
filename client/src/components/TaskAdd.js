@@ -17,24 +17,26 @@ const TaskAdd = ({ getData, onClick }) => {
   };
 
   const addTask = async () => {
-    const taskId = uuidv4();
-    try {
-      const response = await axios.post(`${process.env.REACT_APP_URL}/todo`, {
-        id: taskId,
-        task_name: taskName,
-        priority: priority,
-        is_complete: false,
-      });
+    if (taskName !== "") {
+      const taskId = uuidv4();
+      try {
+        const response = await axios.post(`${process.env.REACT_APP_URL}/todo`, {
+          id: taskId,
+          task_name: taskName,
+          priority: priority,
+          is_complete: false,
+        });
 
-      if (response.status !== 200) {
-        console.log("error");
-      } else {
-        getData();
-        console.log("success");
-        onClick();
+        if (response.status !== 200) {
+          console.log("error");
+        } else {
+          getData();
+          console.log("success");
+          onClick();
+        }
+      } catch (error) {
+        console.log("Error on addTask: ", error);
       }
-    } catch (error) {
-      console.log("Error on addTask: ", error);
     }
   };
   return (
@@ -56,9 +58,7 @@ const TaskAdd = ({ getData, onClick }) => {
         <div className="taskAdd__container__item2--priority">
           <label className="label">Priority</label>
           <select onChange={handlePriorityChange} value={priority}>
-            <option disabled selected>
-              Select...
-            </option>
+            {/* <option disabled>Select...</option> */}
             <option value={1}>High</option>
             <option value={2}>Moderate</option>
             <option value={3}>Low</option>

@@ -6,6 +6,7 @@ import axios from "axios";
 import TaskAdd from "./components/TaskAdd";
 import Button from "./components/common/Button";
 import DeleteTask from "./components/DeleteTask";
+
 // require("dotenv").config();
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
   const [uncompletedTasks, setUncompletedTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [showAddBox, setShowAddBox] = useState(false);
+  const [showSearchBox, setShowSearchBox] = useState(true);
+  const [showDeleteBox, setShowDeleteBox] = useState(false);
 
   const getData = async () => {
     try {
@@ -36,8 +39,12 @@ function App() {
   }, []);
   useEffect(() => {
     // if (data != null) {
-    setUncompletedTasks(data.filter((task) => !task.is_complete));
-    setCompletedTasks(data.filter((task) => task.is_complete));
+    setUncompletedTasks(
+      data && data.filter ? data.filter((task) => !task.is_complete) : []
+    );
+    setCompletedTasks(
+      data && data.filter ? data.filter((task) => task.is_complete) : []
+    );
     // }
   }, [data]);
 
@@ -48,17 +55,42 @@ function App() {
       setShowAddBox(false);
     }
   };
+
+  const onSearchTaskModalClick = () => {
+    if (!showSearchBox) {
+      setShowSearchBox(true);
+      setShowDeleteBox(false);
+    } else {
+      setShowSearchBox(false);
+      setShowDeleteBox(false);
+    }
+  };
+  const onDeleteTaskModalClick = () => {
+    if (!showDeleteBox) {
+      setShowDeleteBox(true);
+      // setShowSearchBox(false);
+    } else {
+      setShowDeleteBox(false);
+      // setShowSearchBox(false);
+    }
+  };
+
   return (
     <div className="app">
       <h1 className="app__title">Simple Task Manager</h1>
-      <div className="app__showAddTaskButton">
+      <div className="app__searchAddButton">
         <Button onClick={onAddTaskModalClick} children={"Add Task"}></Button>
+        {/* <Button onClick={onSearchTaskModalClick} children={"Search"}></Button> */}
+        <br></br>
+        <Button onClick={onDeleteTaskModalClick} children={"Delete"}></Button>
       </div>
       {/* {!showAddBox && ( */}
-      <div className="app__searchBox">
-        <SearchBox getData={getData}></SearchBox>
-      </div>
-      <DeleteTask></DeleteTask>
+      {showSearchBox && (
+        <div className="app__searchBox">
+          <SearchBox getData={getData}></SearchBox>
+        </div>
+      )}
+      {showDeleteBox && <DeleteTask getData={getData}></DeleteTask>}
       {/* )} */}
       {showAddBox && (
         <div className="app__addTaskBox">

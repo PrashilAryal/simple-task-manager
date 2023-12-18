@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Select from "react-select";
 import Modal from "react-modal";
-import "../assets/css/searchBox.css";
+import "../assets/css/deleteTask.css";
 Modal.setAppElement("#root");
 
-const DeleteTask = () => {
+const DeleteTask = ({ getData }) => {
   const [searchName, setSearchName] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [error, setError] = useState(null);
@@ -59,6 +59,7 @@ const DeleteTask = () => {
       setError(null);
       setIsModalOpen(false);
       console.log("Todo deleted successfully");
+      getData();
     } catch (error) {
       console.log("Error while deleting: ", error);
       setSearchData(null);
@@ -81,30 +82,34 @@ const DeleteTask = () => {
   useEffect(() => {
     getAllData();
     // console.log("useEffect on SearchBox.js * searchData:", searchData);
-  }, []);
+  }, [getData]);
   // }, [searchData]);
 
   return (
-    <div className="searchContainer">
+    <div className="delete__container">
       <p>Delete</p>
-      <div className="searchContainer__select">
+      <div className="delete__container__select">
         <Select
           isClearable={true}
           value={{ label: searchName, value: searchName }}
           onChange={handleListItemClick}
           onInputChange={handleInputChange}
-          options={suggestions.map((item) => ({
-            label: item.task_name,
-            value: item.task_name,
-          }))}
+          options={
+            suggestions && suggestions.map
+              ? suggestions.map((item) => ({
+                  label: item.task_name,
+                  value: item.task_name,
+                }))
+              : []
+          }
           placeholder="Type here..."
         ></Select>
       </div>
 
-      <div className="searchContainer__button">
+      <div className="delete__container__button">
         <Button onClick={getSearchData} children={"Delete"}></Button>
       </div>
-      <div className="delete-task__modal">
+      <div className="delete__task__modal">
         <Modal
           className={"modal-box"}
           isOpen={isModalOpen}
