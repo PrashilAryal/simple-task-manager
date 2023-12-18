@@ -38,6 +38,9 @@ const ListItem = ({ data, getData }) => {
       setTaskPriority("Low");
     }
   };
+  const strikeStyle = {
+    textDecoration: isChecked ? "line-through" : "none",
+  };
   useEffect(() => {
     checkPriority();
   }, [data]);
@@ -45,7 +48,7 @@ const ListItem = ({ data, getData }) => {
     <div>
       <div className="listItem">
         <div className="listItem__details">
-          <p>{data.task_name}</p>
+          <p style={strikeStyle}>{data.task_name}</p>
           <span>
             {taskPriority}
             {/* {data.priority} ID:{data.id} */}

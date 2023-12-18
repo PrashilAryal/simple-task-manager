@@ -7,6 +7,7 @@ import axios from "axios";
 const TaskAdd = ({ getData, onClick }) => {
   const [taskName, setTaskName] = useState("");
   const [priority, setPriority] = useState(1);
+  const [error, setError] = useState("");
 
   const handleTextChange = (text) => {
     setTaskName(text);
@@ -32,7 +33,10 @@ const TaskAdd = ({ getData, onClick }) => {
         }
       } catch (error) {
         console.log("Error on addTask: ", error);
+        setError("Task already added");
       }
+    } else {
+      setError("Please enter a Task");
     }
   };
   return (
@@ -64,6 +68,7 @@ const TaskAdd = ({ getData, onClick }) => {
       <div className="taskAdd__container__item3">
         <Button onClick={addTask} children={"Add"}></Button>
       </div>
+      <p className="taskAddError">{error}</p>
     </div>
   );
 };

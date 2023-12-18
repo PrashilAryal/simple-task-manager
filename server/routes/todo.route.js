@@ -27,7 +27,7 @@ router.post("/", (req, res) => {
     (error, result) => {
       if (error) {
         console.log("Error adding todo: ", error);
-        return res.status(500).send("Error while adding todo.");
+        return res.status(500).send("Task already added.");
         // res.status(500).send(error);
       }
       return res.send("Todo inserted successfully.");

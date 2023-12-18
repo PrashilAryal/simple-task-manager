@@ -142,3 +142,10 @@
   border-radius: 0;
   border-bottom: 1px solid darkorange;
 }
+
+.taskAddError {
+  color: darkorange;
+  width: 40%;
+  margin: 0 auto;
+  border-radius: 5px;
+}

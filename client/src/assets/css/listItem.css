@@ -53,17 +53,3 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-.completedTask {
-  background-color: darkorange;
-  border-color: darkorange;
-}
-.completedTask:before {
-  content: "\2713";
-  color: white;
-  position: absolute;
-  font-size: 15px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}

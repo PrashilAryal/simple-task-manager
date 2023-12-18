@@ -5,7 +5,7 @@ import ListItem from "./components/ListItem";
 import axios from "axios";
 import TaskAdd from "./components/TaskAdd";
 import Button from "./components/common/Button";
-import DeleteTask from "./components/DeleteTask";
+// import DeleteTask from "./components/DeleteTask";
 
 // require("dotenv").config();
 
@@ -81,8 +81,7 @@ function App() {
       <div className="app__searchAddButton">
         <Button onClick={onAddTaskModalClick} children={"Add Task"}></Button>
         {/* <Button onClick={onSearchTaskModalClick} children={"Search"}></Button> */}
-        <br></br>
-        <Button onClick={onDeleteTaskModalClick} children={"Delete"}></Button>
+        {/* <Button onClick={onDeleteTaskModalClick} children={"Delete"}></Button> */}
       </div>
       {/* {!showAddBox && ( */}
       {showSearchBox && (
@@ -90,7 +89,7 @@ function App() {
           <SearchBox getData={getData}></SearchBox>
         </div>
       )}
-      {showDeleteBox && <DeleteTask getData={getData}></DeleteTask>}
+      {/* {showDeleteBox && <DeleteTask getData={getData}></DeleteTask>} */}
       {/* )} */}
       {showAddBox && (
         <div className="app__addTaskBox">

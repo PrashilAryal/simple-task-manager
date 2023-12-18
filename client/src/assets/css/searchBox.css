@@ -16,6 +16,9 @@
   width: 100%;
   margin: 0 auto;
 }
+.searchContainer__box p {
+  font-size: 18px;
+}
 .searchContainer p {
   padding-right: 10px;
   margin: auto 0;
@@ -40,7 +43,7 @@
 }
 .search__container__result__data {
   background-color: rgb(45, 45, 115);
-  padding: 10px;
+  padding: 20px;
   width: 50%;
   margin: 0 auto;
   border-radius: 10px;
@@ -58,6 +61,8 @@
 
 .search__container__result__data .result__button {
   margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .suggestions__list {

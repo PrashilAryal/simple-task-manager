@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Select from "react-select";
 import "../../assets/css/searchBox.css";
+import Modal from "react-modal";
 
 const SearchBox = ({ getData }) => {
   const [searchName, setSearchName] = useState("");
@@ -12,6 +13,7 @@ const SearchBox = ({ getData }) => {
   const [taskPriority, setTaskPriority] = useState("");
   const [taskStatus, setTaskStatus] = useState("");
   const [showSearchResult, setShowSearchResult] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getAllData = async () => {
     try {
@@ -70,8 +72,33 @@ const SearchBox = ({ getData }) => {
     setSearchName(selectedOption ? selectedOption.label : "");
   };
 
-  const onSearchResultClick = () => {
+  const onSearchResultCancelClick = () => {
     setShowSearchResult(false);
+  };
+  const onSearchResultDeleteClick = () => {
+    setIsModalOpen(true);
+  };
+
+  // Deletion
+  const handleDeletionConfirm = async () => {
+    try {
+      await axios.delete(
+        `${process.env.REACT_APP_URL}/todo/delete/${searchName}`
+      );
+      setSearchName("");
+      setSearchData(null);
+      setError(null);
+      setIsModalOpen(false);
+      console.log("Todo deleted successfully");
+      getData();
+    } catch (error) {
+      console.log("Error while deleting: ", error);
+      setSearchData(null);
+      setError("Error");
+    }
+  };
+  const handleDeleteCancel = () => {
+    setIsModalOpen(false);
   };
 
   useEffect(() => {
@@ -120,7 +147,14 @@ const SearchBox = ({ getData }) => {
               <p className="result__priority">Priority: {taskPriority}</p>
               <p className="result__status">Status: {taskStatus}</p>
               <div className="result__button">
-                <Button onClick={onSearchResultClick} children={"OK"}></Button>
+                <Button
+                  onClick={onSearchResultCancelClick}
+                  children={"Cancel"}
+                ></Button>
+                <Button
+                  onClick={onSearchResultDeleteClick}
+                  children={"Delete"}
+                ></Button>
               </div>
             </div>
           ) : (
@@ -128,6 +162,18 @@ const SearchBox = ({ getData }) => {
           )}
         </div>
       )}
+      <div className="delete__task__modal">
+        <Modal
+          className={"modal-box"}
+          isOpen={isModalOpen}
+          onRequestClose={() => setIsModalOpen(false)}
+          contentLabel="Confirmation Modal"
+        >
+          <p>Are you sure you want to delete this item?</p>
+          <button onClick={handleDeletionConfirm}>Yes</button>
+          <button onClick={handleDeleteCancel}>Cancel</button>
+        </Modal>
+      </div>
     </div>
   );
 };
