@@ -101,7 +101,7 @@ function App() {
       <div className="app__listContainer">
         <p className="app__listContainer__heading">To be Done</p>
         {data.length === 0 ? (
-          <p>Loading...</p>
+          <p>No data found!</p>
         ) : (
           uncompletedTasks.map((todo) => (
             <ListItem key={todo.id} data={todo} getData={getData} />

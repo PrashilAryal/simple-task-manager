@@ -3,7 +3,6 @@ import "../assets/css/taskAdd.css";
 import TextBox from "./common/TextBox";
 import Button from "./common/Button";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 
 const TaskAdd = ({ getData, onClick }) => {
   const [taskName, setTaskName] = useState("");
@@ -18,13 +17,10 @@ const TaskAdd = ({ getData, onClick }) => {
 
   const addTask = async () => {
     if (taskName !== "") {
-      const taskId = uuidv4();
       try {
         const response = await axios.post(`${process.env.REACT_APP_URL}/todo`, {
-          id: taskId,
           task_name: taskName,
           priority: priority,
-          is_complete: false,
         });
 
         if (response.status !== 200) {

@@ -15,7 +15,7 @@ morgan.token(
   "Request: :method \nFor URL: :url \nResponse Time: :total-time[2] milliseconds"
 );
 
-//middleware
+// middleware
 app.use((req, res, next) => {
   req.conn = conn;
   next();
@@ -26,12 +26,12 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("custom"));
 
-//router
+// router
 app.use("/", router);
 app.use("/todo", todoRouter);
 
-//server activation
+// server activation
 app.listen(8000, () => {
   console.log("Server is running on PORT 8000");
-  //   console.log("");
+  // console.log("");
 });

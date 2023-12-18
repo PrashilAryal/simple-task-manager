@@ -101,7 +101,6 @@ const SearchBox = ({ getData }) => {
                   }))
                 : []
             }
-            placeholder="Type here..."
           ></Select>
         </div>
 

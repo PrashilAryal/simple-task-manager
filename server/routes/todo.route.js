@@ -8,9 +8,9 @@ router.get("/", (req, res) => {
     (error, result) => {
       if (error) {
         // res.status(500).send("Error while retrieving todos.");
-        res.status(500).send(error);
+        return res.status(500).send(error);
       }
-      result.rows.length > 0
+      result?.rows?.length > 0
         ? res.json(result.rows)
         : res.json("There are no todos.");
     }
@@ -19,13 +19,11 @@ router.get("/", (req, res) => {
 
 //add new todo
 router.post("/", (req, res) => {
-  const todo_id = req.body.id;
   const task_name = req.body.task_name;
   const priority = req.body.priority;
-  const is_complete = false;
   req.conn.query(
-    "INSERT INTO todos (id, task_name, priority, is_complete) VALUES($1,$2,$3,$4)",
-    [todo_id, task_name, priority, is_complete],
+    "INSERT INTO todos (task_name, priority) VALUES($1,$2)",
+    [task_name, priority],
     (error, result) => {
       if (error) {
         console.log("Error adding todo: ", error);
