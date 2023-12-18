@@ -13,26 +13,105 @@
   margin: auto 0;
   color: gainsboro;
 }
-.searchContainer input {
+.searchContainer__select {
   border-radius: 5px;
   width: 50%;
   border: none;
   outline: none;
 }
-/* .searchContainer button {
-  margin-left: 10px;
-  border: none;
-  border-radius: 5px;
-  height: 25px;
+.searchContainer .searchContainer__button {
   margin: auto 0;
   margin-left: 10px;
-  font-weight: 600;
-  background-color: darkorange;
-  color: white;
-  transition: transform 0.5s ease;
 }
-.searchContainer button:hover {
+
+.suggestions__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+.suggestions__list li {
+  padding: 8px;
   cursor: pointer;
-  transform: scale(1.1);
-  background-color: rgba(255, 77, 1, 0.5);
-} */
+  border-bottom: 1px solid #ddd;
+}
+
+.suggestions__list li:last-child {
+  border-bottom: none;
+}
+
+/* DeleteTask */
+.delete-task__modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.delete-task__modal .modal-box {
+  background-color: red;
+}
+.ReactModal__Overlay {
+  /* background-color: darkslateblue; */
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+.ReactModal__Overlay--after-open {
+  /* background-color: darkslateblue; */
+
+  border-radius: 20px;
+  opacity: 1;
+}
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+.ReactModal__Content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  background-color: darkslateblue;
+
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 400px;
+  max-width: 80%;
+  height: 300px;
+  color: white;
+}
+
+.ReactModal__Content p {
+  color: white;
+  font-size: 18px;
+  padding-bottom: 20px;
+  margin: 0 auto;
+}
+.ReactModal__Content button {
+  background-color: darkred;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 10px;
+  width: 100px;
+}
+
+.ReactModal__Content button:hover {
+  background-color: maroon;
+}
+.ReactModal__Content button:last-child {
+  background-color: #ccc;
+  color: #333;
+}
+.ReactModal__Content button:last-child:hover {
+  background-color: #b3b3b3;
+}

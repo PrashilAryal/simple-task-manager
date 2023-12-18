@@ -5,7 +5,7 @@ import Button from "./common/Button";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
-const TaskAdd = ({ getData }) => {
+const TaskAdd = ({ getData, onClick }) => {
   const [taskName, setTaskName] = useState("");
   const [priority, setPriority] = useState(1);
 
@@ -31,6 +31,7 @@ const TaskAdd = ({ getData }) => {
       } else {
         getData();
         console.log("success");
+        onClick();
       }
     } catch (error) {
       console.log("Error on addTask: ", error);
@@ -38,17 +39,26 @@ const TaskAdd = ({ getData }) => {
   };
   return (
     <div className="taskAdd__container">
+      <button className="closeButton" onClick={onClick}>
+        X
+      </button>
       <div className="taskAdd__container__item1">
-        <TextBox
-          type={"text"}
-          placeholder={"Task Name"}
-          onTextChange={handleTextChange}
-        ></TextBox>
+        <label className="label">Task</label>
+        <div className="taskAdd__container__item1--field">
+          <TextBox
+            type={"text"}
+            placeholder={"Task Name"}
+            onTextChange={handleTextChange}
+          ></TextBox>
+        </div>
       </div>
       <div className="taskAdd__container__item2">
         <div className="taskAdd__container__item2--priority">
-          <label>Priority</label>
+          <label className="label">Priority</label>
           <select onChange={handlePriorityChange} value={priority}>
+            <option disabled selected>
+              Select...
+            </option>
             <option value={1}>High</option>
             <option value={2}>Moderate</option>
             <option value={3}>Low</option>

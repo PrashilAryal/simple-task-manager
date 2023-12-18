@@ -16,6 +16,37 @@
 /* .app__searchBox {
   border-radius: 10px;
 } */
+.app__showAddTaskButton {
+  /* margin-bottom: 10px; */
+  position: absolute;
+  top: 13%;
+  right: 15%;
+}
+.addTask {
+  color: gainsboro;
+}
+.app__searchBox {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.app__addTaskBox {
+  /* margin-bottom: 10px; */
+  /* display: none; Hidden by default */
+  position: fixed; /* Stay in place */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  /* padding-top: 100px; Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  /* background-color: red; */
+  /* background-color: rgb(0, 0, 0); */
+  background-color: rgba(0, 0, 0, 0.4);
+}
 .app__listContainer {
   background-color: darkslateblue;
   width: 80%;
@@ -33,6 +64,13 @@
   width: 100%;
 }
 .textBox .textBox__input {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+}
+.textBox .textBox__input:hover {
   outline: none;
   border: none;
   border-radius: 5px;

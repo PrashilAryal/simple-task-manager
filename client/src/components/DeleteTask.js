@@ -1,14 +1,17 @@
-import Button from "./Button";
+import Button from "../components/common/Button";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Select from "react-select";
-import "../../assets/css/searchBox.css";
+import Modal from "react-modal";
+import "../assets/css/searchBox.css";
+Modal.setAppElement("#root");
 
-const SearchBox = () => {
+const DeleteTask = () => {
   const [searchName, setSearchName] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [error, setError] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getAllData = async () => {
     try {
@@ -32,17 +35,38 @@ const SearchBox = () => {
         setSearchData(() => item);
         console.log("getSearchData on SearchBox.js: ", response.data[0]);
         setError(null);
-        // console.log("HELL0O");
-        // console.log(searchName);
-        // console.log(searchData.id);
         console.log(response);
+        if (item) {
+          setIsModalOpen(true);
+        } else {
+          setError("No matching result");
+        }
       } catch (error) {
         console.error("Error: ", error);
-        // console.log(error);
         setSearchData(null);
         setError("Error");
       }
     }
+  };
+
+  const handleDeletionConfirm = async () => {
+    try {
+      await axios.delete(
+        `${process.env.REACT_APP_URL}/todo/delete/${searchName}`
+      );
+      setSearchName("");
+      setSearchData(null);
+      setError(null);
+      setIsModalOpen(false);
+      console.log("Todo deleted successfully");
+    } catch (error) {
+      console.log("Error while deleting: ", error);
+      setSearchData(null);
+      setError("Error");
+    }
+  };
+  const handleDeleteCancel = () => {
+    setIsModalOpen(false);
   };
   const handleInputChange = (newValue, { action }) => {
     if (action === "input-change") {
@@ -62,7 +86,7 @@ const SearchBox = () => {
 
   return (
     <div className="searchContainer">
-      <p>Search</p>
+      <p>Delete</p>
       <div className="searchContainer__select">
         <Select
           isClearable={true}
@@ -78,23 +102,22 @@ const SearchBox = () => {
       </div>
 
       <div className="searchContainer__button">
-        <Button onClick={getSearchData} children={"Search"}></Button>
+        <Button onClick={getSearchData} children={"Delete"}></Button>
       </div>
-      {/* <button onClick={getSearchData}>Search</button> */}
-      <div>
-        {/* {searchData && <p>{searchData}</p>} */}
-        {error || searchData == null ? (
-          <p>{error}</p>
-        ) : searchData.id ? (
-          <p>
-            ID: {searchData.id}, Name:{searchData.task_name}
-          </p>
-        ) : (
-          <p>No matching result</p>
-        )}
+      <div className="delete-task__modal">
+        <Modal
+          className={"modal-box"}
+          isOpen={isModalOpen}
+          onRequestClose={() => setIsModalOpen(false)}
+          contentLabel="Confirmation Modal"
+        >
+          <p>Are you sure you want to delete this item?</p>
+          <button onClick={handleDeletionConfirm}>Yes</button>
+          <button onClick={handleDeleteCancel}>Cancel</button>
+        </Modal>
       </div>
     </div>
   );
 };
 
-export default SearchBox;
+export default DeleteTask;

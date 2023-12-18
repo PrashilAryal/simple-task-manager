@@ -90,7 +90,7 @@ router.patch("/:id", (req, res) => {
   );
 });
 
-// Search Todo by Name (For deletion)
+// Search Todo by Name
 router.get("/search/:task_name", (req, res) => {
   const task_name = req.params.task_name;
   req.conn.query(
