@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-// get all todos
+// Get all todo
 router.get("/", (req, res) => {
   req.conn.query(
     "SELECT * FROM todos ORDER BY priority ASC NULLS LAST",
     (error, result) => {
       if (error) {
-        // res.status(500).send("Error while retrieving todos.");
         return res.status(500).send(error);
       }
       result?.rows?.length > 0
@@ -17,7 +16,7 @@ router.get("/", (req, res) => {
   );
 });
 
-//add new todo
+// Add a new Todo
 router.post("/", (req, res) => {
   const task_name = req.body.task_name;
   const priority = req.body.priority;
@@ -28,14 +27,13 @@ router.post("/", (req, res) => {
       if (error) {
         console.log("Error adding todo: ", error);
         return res.status(500).send("Task already added.");
-        // res.status(500).send(error);
       }
       return res.send("Todo inserted successfully.");
     }
   );
 });
 
-// delete todo by id
+// Delete a Todo by ID
 router.delete("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   req.conn.query("DELETE FROM todos WHERE id=$1", [id], (error, result) => {
@@ -48,7 +46,7 @@ router.delete("/:id", (req, res) => {
   });
 });
 
-// delete todo by name
+// Delete a Todo by Name
 router.delete("/delete/:task_name", (req, res) => {
   const task_name = req.params.task_name;
   req.conn.query(
@@ -56,7 +54,6 @@ router.delete("/delete/:task_name", (req, res) => {
     [task_name],
     (error, result) => {
       if (error) {
-        // res.status(500).send("Error while deleting todo.");
         res.status(500).send(error);
       }
       result.rowCount > 0
@@ -66,11 +63,9 @@ router.delete("/delete/:task_name", (req, res) => {
   );
 });
 
-// Mark todo as completed
+// Mark a Todo as Completed
 router.patch("/:id", (req, res) => {
   const id = req.params.id;
-  //   const task_name = req.body.title;
-  //   const priority = req.body.priority;
   const is_complete = req.body.is_complete;
   console.log("is_complete:", is_complete);
   req.conn.query(
@@ -78,7 +73,6 @@ router.patch("/:id", (req, res) => {
     [is_complete, id],
     (error, result) => {
       if (error) {
-        // res.status(500).send("Error while updating todo.");
         res.status(500).send(error);
       }
       result.rowCount > 0
@@ -88,7 +82,7 @@ router.patch("/:id", (req, res) => {
   );
 });
 
-// Search Todo by Name
+// Search a Todo by Name
 router.get("/search/:task_name", (req, res) => {
   const task_name = req.params.task_name;
   req.conn.query(
@@ -96,7 +90,6 @@ router.get("/search/:task_name", (req, res) => {
     [task_name],
     (error, result) => {
       if (error) {
-        // res.status(500).json("Error while searching todo.");
         res.status(500).json(error);
       }
       result.rowCount > 0

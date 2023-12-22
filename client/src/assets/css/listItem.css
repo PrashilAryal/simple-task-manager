@@ -1,6 +1,6 @@
 .listItem {
   display: flex;
-  background-color: rgb(91, 78, 176);
+  background-color: #5b4eb0;
   width: 90%;
   justify-content: space-between;
   align-items: center;

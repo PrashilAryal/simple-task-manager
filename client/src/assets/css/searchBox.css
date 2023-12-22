@@ -2,9 +2,6 @@
   background-color: darkslateblue;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* text-align: center; */
-  /* height: 100px; */
   padding: 10px 0;
   width: 80%;
   margin: 0 auto;
@@ -39,7 +36,6 @@
   margin-top: 10px;
 }
 .search__container__result p {
-  /* font-size: 18px; */
 }
 .search__container__result__data {
   background-color: rgb(45, 45, 115);
@@ -95,13 +91,10 @@
   background-color: red;
 }
 .ReactModal__Overlay {
-  /* background-color: darkslateblue; */
   opacity: 0;
   transition: opacity 200ms ease-in-out;
 }
 .ReactModal__Overlay--after-open {
-  /* background-color: darkslateblue; */
-
   border-radius: 20px;
   opacity: 1;
 }

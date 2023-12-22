@@ -50,13 +50,9 @@ const SearchBox = ({ getData }) => {
         } else {
           setTaskStatus("Not Done");
         }
-        // console.log("HELL0O");
-        // console.log(searchName);
-        // console.log(searchData.id);
         console.log(response);
       } catch (error) {
         console.error("Error: ", error);
-        // console.log(error);
         setSearchData(null);
         setError("Error");
       }
@@ -106,9 +102,7 @@ const SearchBox = ({ getData }) => {
     if (searchData === null) {
       setShowSearchResult(false);
     }
-    // console.log("useEffect on SearchBox.js * searchData:", searchData);
   }, [getData]);
-  // }, [searchData]);
 
   return (
     <div className="searchContainer">
@@ -134,11 +128,9 @@ const SearchBox = ({ getData }) => {
         <div className="searchContainer__button">
           <Button onClick={getSearchData} children={"Search"}></Button>
         </div>
-        {/* <button onClick={getSearchData}>Search</button> */}
       </div>
       {showSearchResult && (
         <div className="search__container__result">
-          {/* {searchData && <p>{searchData}</p>} */}
           {error || searchData == null ? (
             <p>{error}</p>
           ) : searchData.id ? (

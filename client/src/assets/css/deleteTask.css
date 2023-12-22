@@ -35,13 +35,10 @@
   background-color: red;
 }
 .ReactModal__Overlay {
-  /* background-color: darkslateblue; */
   opacity: 0;
   transition: opacity 200ms ease-in-out;
 }
 .ReactModal__Overlay--after-open {
-  /* background-color: darkslateblue; */
-
   border-radius: 20px;
   opacity: 1;
 }
@@ -57,9 +54,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
   background-color: darkslateblue;
-
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;

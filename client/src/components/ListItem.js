@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import React from "react";
 import axios from "axios";
 import "../assets/css/listItem.css";
 
@@ -49,10 +48,7 @@ const ListItem = ({ data, getData }) => {
       <div className="listItem">
         <div className="listItem__details">
           <p style={strikeStyle}>{data.task_name}</p>
-          <span>
-            {taskPriority}
-            {/* {data.priority} ID:{data.id} */}
-          </span>
+          <span>{taskPriority}</span>
         </div>
         <input
           type="checkbox"

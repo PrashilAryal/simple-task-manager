@@ -5,9 +5,6 @@ import ListItem from "./components/ListItem";
 import axios from "axios";
 import TaskAdd from "./components/TaskAdd";
 import Button from "./components/common/Button";
-// import DeleteTask from "./components/DeleteTask";
-
-// require("dotenv").config();
 
 function App() {
   const [data, setData] = useState([]);
@@ -21,13 +18,7 @@ function App() {
     try {
       const response = await axios.get(`${process.env.REACT_APP_URL}/todo`);
 
-      // if (!response.ok) {
-      //   console.log(response);
-      //   throw new Error(`HTTP error: ${response.status}`, response);
-      // }
-      // const jsonData = await response.json();
       setData(response.data);
-      // setData(response.data);
       console.log("getData on App.js * data: ", data);
     } catch (error) {
       console.log(error);
@@ -80,21 +71,16 @@ function App() {
       <h1 className="app__title">Simple Task Manager</h1>
       <div className="app__searchAddButton">
         <Button onClick={onAddTaskModalClick} children={"Add Task"}></Button>
-        {/* <Button onClick={onSearchTaskModalClick} children={"Search"}></Button> */}
-        {/* <Button onClick={onDeleteTaskModalClick} children={"Delete"}></Button> */}
       </div>
-      {/* {!showAddBox && ( */}
       {showSearchBox && (
         <div className="app__searchBox">
           <SearchBox getData={getData}></SearchBox>
         </div>
       )}
-      {/* {showDeleteBox && <DeleteTask getData={getData}></DeleteTask>} */}
-      {/* )} */}
+
       {showAddBox && (
         <div className="app__addTaskBox">
           <TaskAdd getData={getData} onClick={onAddTaskModalClick}></TaskAdd>
-          {/* <SearchBox></SearchBox> */}
         </div>
       )}
       <div className="app__listContainer">

@@ -81,9 +81,7 @@ const DeleteTask = ({ getData }) => {
 
   useEffect(() => {
     getAllData();
-    // console.log("useEffect on SearchBox.js * searchData:", searchData);
   }, [getData]);
-  // }, [searchData]);
 
   return (
     <div className="delete__container">
